@@ -8,10 +8,6 @@
     z-index: 10;
     pointer-events: none;
 
-    * {
-        pointer-events: auto;
-    }
-
     &-inner {
         display: flex;
         justify-content: space-between;
@@ -22,7 +18,7 @@
             flex-direction: column;
             align-items: center;
             padding-block: 24px;
-            gap: 24px;
+            gap: 20px;
         }
     }
 
@@ -30,6 +26,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        pointer-events: auto;
 
         @include m.sp {
             align-items: center;
@@ -38,10 +35,12 @@
 
         &-text {
             margin-bottom: 16px;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
 
             @include m.sp {
-                margin-bottom: 12px;
-                font-size: 0.85rem;
+                margin-bottom: 10px;
+                font-size: 0.8rem;
             }
         }
 
@@ -52,45 +51,78 @@
                 display: block;
 
                 @include m.sp {
-                    width: 200px;
+                    width: 190px;
                 }
             }
         }
     }
 
     &-right {
+        pointer-events: auto;
 
-        // ★スマホ・タブレットではヘッダー内ボタンを非表示
         @include m.tab {
             display: none;
+        }
+
+        .header-reserve-btn {
+            display: inline-block;
+            background-color: #BD5338;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            box-shadow: 0 4px 12px rgba(189, 83, 56, 0.25);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+
+            &:hover {
+                opacity: 0.85;
+                transform: translateY(-2px);
+            }
         }
     }
 }
 
 .sp-fixed-reserve {
-    display: none; // PCでは非表示
+    display: none;
 
     @include m.tab {
         display: block;
         position: fixed;
         right: 16px;
-        bottom: 30px;
+        bottom: 24px;
+        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
         z-index: 99999;
+        margin: 0;
+        padding: 0;
+        pointer-events: auto;
 
         a {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             writing-mode: vertical-rl;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             font-size: 0.85rem;
-            padding: 16px 10px;
+            font-weight: 500;
+            padding: 16px 9px;
             background-color: #BD5338;
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-            line-height: 1.2;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            line-height: 1;
             white-space: nowrap;
             box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:active {
+                transform: scale(0.95);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
         }
     }
 }
@@ -145,6 +177,10 @@
     position: relative;
     margin-bottom: 180px;
 
+    @include m.tab {
+        margin-bottom: 120px;
+    }
+
     @include m.sp {
         margin-bottom: 80px;
     }
@@ -161,10 +197,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 60%);
 
             @include m.sp {
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.65) 75%);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 80%);
             }
         }
 
@@ -176,7 +212,7 @@
             display: block;
 
             @include m.sp {
-                object-position: 75% center;
+                object-position: 80% center;
             }
         }
     }
@@ -199,9 +235,11 @@
         box-sizing: border-box;
 
         @include m.sp {
-            font-size: clamp(1.5rem, 6.5vw, 2.2rem);
-            line-height: 1.4;
+            top: 45%;
+            font-size: clamp(1.4rem, 6vw, 1.85rem);
+            line-height: 1.45;
             text-align: center;
+            text-shadow: 0 0 16px rgba(255, 255, 255, 0.95), 0 0 6px rgba(255, 255, 255, 0.9);
         }
     }
 }
