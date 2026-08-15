@@ -1,0 +1,460 @@
+@use 'mixin' as m;
+
+.greeting,
+.strong,
+.atmosphere {
+    margin-bottom: 180px;
+
+    @include m.tab {
+        margin-bottom: 100px;
+    }
+
+    @include m.sp {
+        margin-bottom: 80px;
+    }
+
+    &-item {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        justify-content: center;
+
+        @include m.sp {
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
+
+    &-text {
+        width: 100%;
+        max-width: 600px;
+        text-align: left;
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            font-family: "Shippori Mincho", serif;
+
+            @include m.sp {
+                font-size: 1.15rem;
+                margin-bottom: 32px;
+            }
+        }
+
+        p {
+            text-align: justify;
+
+            @include m.sp {
+                margin-bottom: 24px;
+            }
+        }
+    }
+
+    &-img {
+        width: 100%;
+        max-width: 300px;
+        aspect-ratio: 5 / 4;
+        flex-shrink: 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+        // ★imgの指定を @include m.sp の外に出して、PC・スマホ共通で適用！
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 50%;
+            display: block;
+        }
+
+        @include m.sp {
+            max-width: 280px;
+            margin-inline: auto;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.strong-img {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 5 / 4;
+    flex-shrink: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 70%;
+        display: block;
+    }
+}
+
+.face-slider {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 180px;
+    position: relative;
+
+    @include m.tab {
+        margin-bottom: 100px;
+    }
+
+    @include m.sp {
+        margin-bottom: 80px;
+    }
+
+    // ★親コンテナ：30000pxの怪物が外へ漏れ出すのをここで物理的に遮断！
+    .slick-area {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden; // ★スライダー枠の外に出たカード・トラックを不可視化（必須の仕様）
+    }
+
+    // ★Slickが自動生成するスライド枠の幅を100%に固定
+    .slick-list {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .slick-track {
+        display: flex; // トラック内のカードを横一列に整列
+    }
+
+    // ★カードのスタイル設定
+    &-card {
+        width: 280px;
+        flex-shrink: 0;
+        border: 2px solid #BD5338;
+        padding: 16px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        margin: 0 10px;
+
+        @include m.sp {
+            width: 240px;
+            margin: 0 8px;
+            padding: 12px;
+        }
+    }
+
+    &-img {
+        width: 100%;
+        aspect-ratio: 5 / 4;
+        margin-bottom: 16px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &-text {
+        p {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+
+            &::before {
+                content: "▶";
+                margin-right: 6px;
+                color: #BD5338;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+
+            @include m.sp {
+                font-size: 0.85rem;
+            }
+        }
+    }
+}
+
+.menu,
+.care,
+.blog {
+    width: 100%;
+    margin-bottom: 180px;
+
+    @include m.tab {
+        margin-bottom: 100px;
+
+        &::after {
+            content: "Scroll  →";
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: #888888;
+            font-family: "Shippori Mincho", serif;
+            margin-top: 32px;
+        }
+    }
+
+    @include m.sp {
+        margin-bottom: 80px;
+
+        &::after {
+            content: "Scroll  →";
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: #888888;
+            font-family: "Shippori Mincho", serif;
+            margin-top: 20px;
+        }
+    }
+
+    &-list {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        @include m.tab {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 260px;
+            justify-content: start; // ★centerを完全に解除して左端（start）を起点にする！
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: 24px; // ★スワイプした時に画面端で止まる位置を定義
+            gap: 32px;
+            padding-inline: 24px; // 左右に余白を持たせる
+            padding-bottom: 16px;
+            box-sizing: border-box;
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        @include m.sp {
+            grid-auto-columns: 240px;
+            gap: 20px;
+            padding-inline: 20px;
+            scroll-padding-inline: 20px;
+        }
+    }
+
+    &-list-item {
+        // PC時は3等分配置
+        width: calc((100% - 80px) / 3);
+        max-width: 300px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+            transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+            box-shadow 0.4s ease,
+            filter 0.4s ease;
+
+        &.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &.delay-1 {
+            transition-delay: 0.2s;
+        }
+
+        &.delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        &:hover {
+            transform: translateY(-8px);
+            filter: brightness(1.04);
+            box-shadow: 0 12px 30px rgba(232, 138, 36, 0.22), 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        // ★タブレット・スマホ時はGrid子要素として100%（grid-auto-columns幅）で追従
+        @include m.tab {
+            width: 100%;
+            max-width: none;
+            scroll-snap-align: start;
+        }
+
+        @include m.sp {
+            width: 100%;
+            max-width: none;
+            scroll-snap-align: start;
+        }
+    }
+
+    &-list-link {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+
+        @include m.tab {
+            padding-bottom: 16px;
+        }
+
+        @include m.sp {
+            padding-bottom: 16px;
+        }
+    }
+
+    &-list-img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &-list-text {
+        padding-inline: 16px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-block: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            &::before,
+            &::after {
+                content: "";
+                width: 16px;
+                height: 1px;
+                background-color: #333333;
+            }
+
+            @include m.sp {
+                font-size: 1.15rem;
+                margin-block: 14px;
+            }
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    }
+
+    &-list-btn {
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-family: "Shippori Mincho", serif;
+        margin-top: auto;
+        font-size: 0.85rem;
+
+        &::after {
+            content: ">>";
+            font-size: 0.8em;
+            letter-spacing: -0.1em;
+        }
+    }
+}
+
+.question {
+    margin-bottom: 180px;
+
+    @include m.tab {
+        margin-bottom: 100px;
+    }
+
+
+    .acc {
+        max-width: 800px;
+        margin: 0 auto;
+
+        &-item {
+            width: 100%;
+            min-height: 60px;
+            margin: 0 auto 32px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+            overflow: hidden;
+        }
+
+        &-btn {
+            width: 100%;
+            height: 60px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background: black;
+                transition: all 0.3s ease;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::before {
+                width: 12px;
+                height: 2px;
+                right: 20px;
+            }
+
+            &::after {
+                width: 2px;
+                height: 12px;
+                right: 25px;
+            }
+
+            &.open::after {
+                height: 0;
+            }
+        }
+
+        &-body {
+            display: none;
+            padding: 0 20px 18px;
+            font-size: 1rem;
+
+            @include m.sp {
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

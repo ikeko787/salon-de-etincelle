@@ -1,0 +1,175 @@
+@use 'mixin' as m;
+
+html {
+    font-size: 100%;
+}
+
+body {
+    color: #000;
+    font-family: "Yu Gothic Medium", "Yu Gothic", "YuGothic", "ヒラギノ角ゴ ProN W3", sans-serif;
+    line-height: 2.0;
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+    // 背景
+    background-image: url('../img/background-img.webp');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('../img/background-img.webp');
+    background-repeat: repeat;
+    background-position: top center;
+    background-size: auto;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: bottom;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-inline: 48px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1080px;
+    padding-inline: 16px;
+    margin-inline: auto;
+}
+
+.section-item {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-family: "Shippori Mincho", serif;
+    text-align: center;
+    margin-bottom: 8px;
+
+    @include m.sp {
+        font-size: 1.5rem;
+    }
+
+
+    &-en {
+        font-family: "Shippori Mincho", serif;
+        text-align: center;
+        margin-bottom: 24px;
+        position: relative;
+        padding-bottom: 16px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background-color: #000;
+        }
+    }
+}
+
+.slick-area {
+
+    // アニメーションの途切れ・ツッカカリを完全に消し去る
+    .slick-track {
+        transition-timing-function: linear !important;
+    }
+
+    .slick-slide {
+        margin: 0 20px;
+    }
+
+    .slick-list {
+        margin: 0 -20px;
+    }
+}
+
+.header-reserve-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    background-color: #BD5338;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.2s ease;
+
+    // ★タブレット（m.tab）以下で「縦書きボタン」にスタイル切り替え！
+    @include m.tab {
+        writing-mode: vertical-rl; // 文字を美しい縦書きにする決定版CSS
+        padding: 20px 10px; // 縦長に合わせた美しい余白バランス
+        font-size: 0.85rem;
+        letter-spacing: 0.15em; // 縦書き文字の間隔を綺麗に整える
+        border-radius: 10px 0 0 10px; // 左側の角だけ丸めて画面右端に吸着させる
+        box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.1);
+        box-shadow: 0 8px 25px rgba(189, 83, 56, 0.45), 0 0 12px rgba(255, 255, 255, 0.6);
+
+        // 縦書き（タブレット以下）でのホバーアクション（画面の内側へちょっと浮き出る）
+        @include m.tab {
+            transform: translateX(-4px);
+            box-shadow: -6px 6px 20px rgba(189, 83, 56, 0.45);
+        }
+    }
+
+    &:active {
+        transform: translateY(1px) scale(0.96);
+        box-shadow: 0 2px 8px rgba(189, 83, 56, 0.3);
+        filter: brightness(0.95);
+
+        // 縦書き（タブレット以下）での押下アクション（キュッと押し込まれる）
+        @include m.tab {
+            transform: translateX(-1px) scale(0.96);
+            box-shadow: -2px 2px 8px rgba(189, 83, 56, 0.3);
+        }
+    }
+}
+
+.footer-reserve-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    background-color: #BD5338;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        filter 0.2s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.1);
+        box-shadow: 0 8px 25px rgba(189, 83, 56, 0.45), 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    &:active {
+        transform: translateY(1px) scale(0.96);
+        box-shadow: 0 2px 8px rgba(189, 83, 56, 0.3);
+        filter: brightness(0.95);
+    }
+}
