@@ -371,24 +371,33 @@ li {
 @media (max-width: 900px) {
   .header-right {
     position: fixed;
-    right: 0;
-    bottom: 40px;
-    z-index: 99;
-    pointer-events: auto;
-    padding-right: env(safe-area-inset-right, 0);
+    top: auto;
+    right: 16px;
+    bottom: 30px;
+    left: auto;
+    z-index: 999;
+    width: -moz-max-content;
+    width: max-content;
+    height: auto;
+    margin: 0;
+    padding: 0;
   }
   .header-right a,
   .header-right button,
   .header-right .header-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     writing-mode: vertical-rl;
-    padding: 18px 12px;
-    border-radius: 8px 0 0 8px;
-    box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.15);
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    padding: 16px 10px;
+    background-color: #BD5338;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+    white-space: nowrap;
     box-sizing: border-box;
-    width: auto;
   }
 }
 

@@ -61,27 +61,32 @@
     &-right {
         @include m.tab {
             position: fixed;
-            right: 0;
-            bottom: 40px;
-            z-index: 99;
-            pointer-events: auto;
+            top: auto;
+            right: 16px;
+            bottom: 30px;
+            left: auto;
+            z-index: 999;
+            width: max-content;
+            height: auto;
+            margin: 0;
+            padding: 0;
 
-            // ★iOSのセーフエリア（右端の物理的な見切れ）を考慮した余白
-            padding-right: env(safe-area-inset-right, 0);
-
-            // 中のリンク/ボタンの設定
             a,
             button,
             .header-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                display: block;
                 writing-mode: vertical-rl;
-                padding: 18px 12px;
-                border-radius: 8px 0 0 8px;
-                box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.15);
+                letter-spacing: 0.15em;
+                font-size: 0.85rem;
+                padding: 16px 10px;
+                background-color: #BD5338;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                line-height: 1.2;
+                white-space: nowrap;
                 box-sizing: border-box;
-                width: auto; // 幅を固定せず中身の文字＋パディングで自動計算
             }
         }
     }
