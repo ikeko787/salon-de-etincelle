@@ -91,38 +91,26 @@
         display: block;
         position: fixed;
         right: 16px;
-        bottom: 24px;
-        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+        bottom: 30px;
+        bottom: calc(30px + env(safe-area-inset-bottom, 0px));
         z-index: 99999;
         margin: 0;
         padding: 0;
-        pointer-events: auto;
 
         a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
             writing-mode: vertical-rl;
             letter-spacing: 0.18em;
             font-size: 0.85rem;
-            font-weight: 500;
-            padding: 16px 9px;
+            padding: 16px 10px;
             background-color: #BD5338;
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-            line-height: 1;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            line-height: 1.2;
             white-space: nowrap;
             box-sizing: border-box;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-            &:active {
-                transform: scale(0.95);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            }
         }
     }
 }
