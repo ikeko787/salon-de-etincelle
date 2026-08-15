@@ -368,15 +368,21 @@ li {
     width: 190px;
   }
 }
-.header-right {
+.header .header-right {
   pointer-events: auto;
 }
 @media (max-width: 900px) {
-  .header-right {
-    display: none;
+  .header .header-right {
+    position: fixed;
+    right: 16px;
+    bottom: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    z-index: 99999;
+    margin: 0;
+    padding: 0;
   }
 }
-.header-right .header-reserve-btn {
+.header .header-right .header-reserve-btn {
   display: inline-block;
   background-color: #BD5338;
   color: #ffffff;
@@ -388,39 +394,41 @@ li {
   box-shadow: 0 4px 12px rgba(189, 83, 56, 0.25);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.header-right .header-reserve-btn:hover {
+.header .header-right .header-reserve-btn:hover {
   opacity: 0.85;
   transform: translateY(-2px);
 }
-
-.sp-fixed-reserve {
-  display: none;
-}
 @media (max-width: 900px) {
-  .sp-fixed-reserve {
-    display: block;
-    position: fixed;
-    right: 16px;
-    bottom: 30px;
-    bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-    z-index: 99999;
-    margin: 0;
+  .header .header-right .header-reserve-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     padding: 0;
+    margin: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    animation: none;
+    transform: none;
+    opacity: 1;
+    font-size: 0;
+    writing-mode: horizontal-tb;
   }
-  .sp-fixed-reserve a {
-    display: block;
-    writing-mode: vertical-rl;
-    letter-spacing: 0.18em;
+  .header .header-right .header-reserve-btn::before {
+    content: "ご予約";
+    writing-mode: horizontal-tb;
     font-size: 0.85rem;
-    padding: 16px 10px;
-    background-color: #BD5338;
+    font-weight: bold;
+    letter-spacing: 0.02em;
     color: #ffffff;
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    line-height: 1.2;
+    line-height: 1;
+    text-align: center;
     white-space: nowrap;
-    box-sizing: border-box;
+  }
+  .header .header-right .header-reserve-btn:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 }
 

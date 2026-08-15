@@ -57,11 +57,17 @@
         }
     }
 
-    &-right {
+    .header-right {
         pointer-events: auto;
 
         @include m.tab {
-            display: none;
+            position: fixed;
+            right: 16px;
+            bottom: 24px;
+            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+            z-index: 99999;
+            margin: 0;
+            padding: 0;
         }
 
         .header-reserve-btn {
@@ -80,37 +86,40 @@
                 opacity: 0.85;
                 transform: translateY(-2px);
             }
-        }
-    }
-}
 
-.sp-fixed-reserve {
-    display: none;
+            @include m.tab {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                padding: 0;
+                margin: 0;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                animation: none;
+                transform: none;
+                opacity: 1; // ★透明化を強制解除して姿を現す！
+                font-size: 0;
+                writing-mode: horizontal-tb;
 
-    @include m.tab {
-        display: block;
-        position: fixed;
-        right: 16px;
-        bottom: 30px;
-        bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-        z-index: 99999;
-        margin: 0;
-        padding: 0;
+                &::before {
+                    content: "ご予約";
+                    writing-mode: horizontal-tb;
+                    font-size: 0.85rem;
+                    font-weight: bold;
+                    letter-spacing: 0.02em;
+                    color: #ffffff;
+                    line-height: 1;
+                    text-align: center;
+                    white-space: nowrap;
+                }
 
-        a {
-            display: block;
-            writing-mode: vertical-rl;
-            letter-spacing: 0.18em;
-            font-size: 0.85rem;
-            padding: 16px 10px;
-            background-color: #BD5338;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-            line-height: 1.2;
-            white-space: nowrap;
-            box-sizing: border-box;
+                &:active {
+                    transform: scale(0.92);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                }
+            }
         }
     }
 }
