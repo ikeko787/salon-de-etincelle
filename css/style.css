@@ -374,6 +374,21 @@ li {
     right: 0;
     bottom: 40px;
     z-index: 99;
+    pointer-events: auto;
+    padding-right: env(safe-area-inset-right, 0);
+  }
+  .header-right a,
+  .header-right button,
+  .header-right .header-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    padding: 18px 12px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    width: auto;
   }
 }
 

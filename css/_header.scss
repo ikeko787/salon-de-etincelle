@@ -64,6 +64,25 @@
             right: 0;
             bottom: 40px;
             z-index: 99;
+            pointer-events: auto;
+
+            // ★iOSのセーフエリア（右端の物理的な見切れ）を考慮した余白
+            padding-right: env(safe-area-inset-right, 0);
+
+            // 中のリンク/ボタンの設定
+            a,
+            button,
+            .header-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                writing-mode: vertical-rl;
+                padding: 18px 12px;
+                border-radius: 8px 0 0 8px;
+                box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.15);
+                box-sizing: border-box;
+                width: auto; // 幅を固定せず中身の文字＋パディングで自動計算
+            }
         }
     }
 }
