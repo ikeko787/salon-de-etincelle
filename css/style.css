@@ -370,21 +370,22 @@ li {
 }
 @media (max-width: 900px) {
   .header-right {
+    display: none;
+  }
+}
+
+.sp-fixed-reserve {
+  display: none;
+}
+@media (max-width: 900px) {
+  .sp-fixed-reserve {
+    display: block;
     position: fixed;
-    top: auto;
     right: 16px;
     bottom: 30px;
-    left: auto;
-    z-index: 999;
-    width: -moz-max-content;
-    width: max-content;
-    height: auto;
-    margin: 0;
-    padding: 0;
+    z-index: 99999;
   }
-  .header-right a,
-  .header-right button,
-  .header-right .header-btn {
+  .sp-fixed-reserve a {
     display: block;
     writing-mode: vertical-rl;
     letter-spacing: 0.15em;
@@ -393,8 +394,8 @@ li {
     background-color: #BD5338;
     color: #ffffff;
     text-decoration: none;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     line-height: 1.2;
     white-space: nowrap;
     box-sizing: border-box;
